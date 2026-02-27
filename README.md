@@ -79,17 +79,15 @@ URL: https://en.wikipedia.org/wiki/Retrieval-augmented_generation
 
 ---
 
-# 3. Simple Weather Tool with LangChain and Gemini
+## 3. Simple Weather Tool with LangChain and Gemini
 
-## Overview
-
-This project demonstrates a **mock weather assistant** integrated with a LangChain tool-calling agent powered by Google Gemini.  
+### Overview
 
 The agent **calls a `get_weather` tool** to provide concise, human-friendly weather updates. The mock dataset can easily be replaced with a real API.  
 
 ---
 
-## Key Features
+### Key Features
 
 - Returns weather for a given city: **condition, temperature, humidity, rain chance**  
 - Handles unknown or missing cities gracefully  
@@ -100,7 +98,7 @@ The agent **calls a `get_weather` tool** to provide concise, human-friendly weat
 
 ---
 
-## Example Usage
+### Example Usage
 
 ```python
 ask("What’s the weather in Mumbai?")
@@ -110,13 +108,13 @@ ask("What’s the weather like today?")
 
 ### Sample Output
 
-## Mumbai
+**Mumbai**
 Humid, partly cloudy, 31 °C, 75% humidity, 40% chance of rain.
 
-## Bengaluru
+**Bengaluru**
 Mild, cloudy, 26 °C, 65% humidity, 30% chance of rain.
 
-## Unknown city
+**Unknown city**
 Please specify the city you want the weather for.
 
 ---
