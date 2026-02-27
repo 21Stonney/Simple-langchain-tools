@@ -3,7 +3,8 @@
 This repository contains **simple LangChain-powered tools** integrated with Google Gemini:
 
 1. **Secure Calculator Tool** – deterministic arithmetic using a safe Python engine.  
-2. **Simple Search Tool** – web search + Wikipedia summaries with live citations.  
+2. **Simple Search Tool** – web search + Wikipedia summaries with live citations.
+3. **Simple Weather Tool** – mock weather updates with concise, human-friendly reports.  
 
 These tools demonstrate how **tool-augmented LLM agents** can produce accurate and reliable outputs.
 
@@ -78,11 +79,54 @@ URL: https://en.wikipedia.org/wiki/Retrieval-augmented_generation
 
 ---
 
+# 3. Simple Weather Tool with LangChain and Gemini
+
+## Overview
+
+This project demonstrates a **mock weather assistant** integrated with a LangChain tool-calling agent powered by Google Gemini.  
+
+The agent **calls a `get_weather` tool** to provide concise, human-friendly weather updates. The mock dataset can easily be replaced with a real API.  
+
+---
+
+## Key Features
+
+- Returns weather for a given city: **condition, temperature, humidity, rain chance**  
+- Handles unknown or missing cities gracefully  
+- LangChain agent enforces rules:  
+  - Always call the weather tool  
+  - Ask for clarification if the city is missing  
+  - Return concise answers  
+
+---
+
+## Example Usage
+
+```python
+ask("What’s the weather in Mumbai?")
+ask("Weather update for Bengaluru, please.")
+ask("What’s the weather like today?")
+```
+
+### Sample Output
+
+## Mumbai
+Humid, partly cloudy, 31 °C, 75% humidity, 40% chance of rain.
+
+## Bengaluru
+Mild, cloudy, 26 °C, 65% humidity, 30% chance of rain.
+
+## Unknown city
+Please specify the city you want the weather for.
+
+---
+
 ## Summary
 
 This repository showcases **tool-augmented LLM agents**:
 
 - Calculator: accurate, safe arithmetic  
-- Search: factual, cited responses from live sources  
+- Search: factual, cited responses from live sources
+- Weather: concise, human-friendly updates
 
 These tools highlight how **LangChain + Gemini** can enforce reliability, avoid hallucinations, and produce professional outputs.
