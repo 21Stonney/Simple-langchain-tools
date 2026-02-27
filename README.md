@@ -1,12 +1,11 @@
-# Simple-langchain-tools
-
+# Simple Langchain Tools
 
 # 1. Simple Calculator Tool with LangChain Agent (Gemini)
- Overview
+Overview
 
 This project demonstrates how to build a secure arithmetic calculator tool and integrate it into a LangChain tool-calling agent powered by Google Gemini.
 
-Instead of relying on the LLM to compute math internally, the agent is forced to call a custom calculate tool that safely evaluates expressions using Python’s ast module.
+Instead of relying on the LLM to compute math internally, the agent is forced to call a custom calculator tool that safely evaluates expressions using Python’s ast module.
 
 This ensures:
 
@@ -18,14 +17,12 @@ Secure expression evaluation
 
 Controlled operator usage
 
-🛠 Key Features
- i.) Secure Arithmetic Engine
+Key Features
+i. Secure Arithmetic Engine
 
 Uses Python ast parsing
 
-Allows only safe operators:
-
-+ - * / // % **
+Allows only safe operators: +, -, *, /, //, %, **
 
 Blocks unsafe code execution
 
@@ -33,17 +30,15 @@ Limits expression length
 
 Prevents extremely large outputs
 
- ii.) Custom LangChain Tool
+ii. Custom LangChain Tool
 
-The calculator is wrapped using:
-
-@tool decorator
+The calculator is wrapped using the @tool decorator
 
 Returns only numeric output
 
 Handles errors gracefully
 
-  iii.) Tool-Calling Agent (Gemini)
+iii. Tool-Calling Agent (Gemini)
 
 Built using:
 
@@ -63,9 +58,9 @@ Convert ^ into ** for exponentiation
 
 Return only the number when requested
 
- Experiment: LLM vs Agent with Calculator
+Experiment: LLM vs Agent with Calculator
 
-To compare performance, I tested:
+To compare performance, the following approaches were tested:
 
 Plain LLM (no tool)
 
@@ -75,19 +70,24 @@ Questions Tested
 
 What is 234 * 19?
 
-Compute (12345*6789)+98765
+Compute (12345 * 6789) + 98765
 
-What is 13.7% of 12345 plus 98.76^2? Round to 2 decimals.
+What is 13.7% of 12345 plus 98.76^2? Round to 2 decimals
 
- Trial Output
+Trial Output
 
-This is the output I obtained during my tests:
-— LLM only —
+LLM Only
+
 Q1: 4446
+
 Q2: 84075680
+
 Q3: Final Answer: 11444.80
 
-— Agent with calculator —
+Agent with Calculator Tool
+
 Q1: 4446
+
 Q2: 83908970
+
 Q3: 11444.80
