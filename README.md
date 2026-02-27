@@ -1,79 +1,332 @@
-# Simple-langchain-tools
+# Simple LangChain Tools
 
-## 1. Simple Calculator Tool with LangChain Agent (Gemini)
+This repository contains **simple LangChain-powered tools** integrated with Google Gemini:
+
+1. **Secure Calculator Tool** – deterministic arithmetic using a safe Python engine.  
+2. **Simple Search Tool** – web search + Wikipedia summaries with live citations.  
+
+These tools demonstrate how **tool-augmented LLM agents** can produce accurate and reliable outputs.
+
+---
+
+## 1. Simple Calculator Tool
 
 ### Overview
 
-This project demonstrates how to build a **secure arithmetic calculator tool** and integrate it into a **LangChain tool-calling agent** powered by Google Gemini.
-
-Instead of relying on the LLM to compute math internally, the agent is required to call a **custom calculator tool** that safely evaluates expressions using Python’s `ast` module.
-
-This approach ensures:
-
-- Deterministic results  
-- No hallucinated arithmetic  
-- Secure expression evaluation  
-- Controlled operator usage  
-
----
+The calculator ensures that all arithmetic is evaluated **safely and deterministically** using Python’s `ast` module. The agent **cannot compute math internally** and must call the tool for any calculations.
 
 ### Key Features
 
-#### i. Secure Arithmetic Engine
+- Safe arithmetic with `+ - * / // % **`  
+- Limits expression length and prevents huge outputs  
+- Wrapped as a LangChain tool with `@tool`  
+- Tool-calling agent powered by `ChatGoogleGenerativeAI (gemini-2.0-flash)`  
+- Converts `^` to `**` and returns numeric results only  
 
-- Uses Python `ast` parsing  
-- Supports only safe operators: `+`, `-`, `*`, `/`, `//`, `%`, `**`  
-- Blocks unsafe code execution  
-- Limits expression length  
-- Prevents extremely large outputs  
+### Sample Questions and Outputs
 
-#### ii. Custom LangChain Tool
-
-- Calculator is wrapped using the `@tool` decorator  
-- Returns only numeric output  
-- Handles errors gracefully  
-
-#### iii. Tool-Calling Agent (Gemini)
-
-- Built using:  
-  - `ChatGoogleGenerativeAI` (gemini-2.0-flash)  
-  - `create_tool_calling_agent`  
-  - `AgentExecutor`  
-- System prompt enforces strict rules:  
-  - Always use the calculate tool for arithmetic  
-  - Convert natural language into a valid math expression  
-  - Convert `^` into `**` for exponentiation  
-  - Return only numeric results when requested  
+| Question | LLM Only | Agent with Calculator |
+|----------|-----------|----------------------|
+| 234 * 19 | 4446 | 4446 |
+| (12345*6789)+98765 | 84075680 | 83908970 |
+| 13.7% of 12345 + 98.76^2 (round 2 decimals) | 11444.80 | 11444.80 |
 
 ---
 
-### Experiment: LLM vs Agent with Calculator
+## 2. Simple Search Tool
 
-To compare performance, the following approaches were tested:
+### Overview
 
-- Plain LLM (no tool)  
-- Agent with calculator tool  
+This agent uses **web search (DuckDuckGo)** and **Wikipedia summaries** to answer factual or recent questions. The LLM **calls tools for any facts, numbers, dates, or latest info**, ensuring accuracy and citations.
 
-#### Questions Tested
+### Key Features
 
-1. What is 234 * 19?  
-2. Compute `(12345 * 6789) + 98765`  
-3. What is `13.7% of 12345 plus 98.76^2`? Round to 2 decimals  
+- `web_search`: fetches up to 5 results with URLs and snippets  
+- `wiki_summary`: short Wikipedia summaries with page URL  
+- Agent enforces using tools for citations and avoids hallucinations  
 
-#### Trial Output
+### Example Usage and Output
 
-**LLM Only** 
+**1) FIFA World Cup 2022 Winner**
+# Simple LangChain Tools
 
-Q1: 4446
-Q2: 84075680
-Q3: Final Answer: 11444.80
+This repository contains **two LangChain-powered tools** integrated with Google Gemini:
+
+1. **Secure Calculator Tool** – deterministic arithmetic using a safe Python engine.  
+2. **Simple Search Tool** – web search + Wikipedia summaries with live citations.  
+
+Both tools demonstrate how **tool-augmented LLM agents** can produce accurate and reliable outputs.
+
+---
+
+## 1. Simple Calculator Tool
+
+### Overview
+
+The calculator ensures that all arithmetic is evaluated **safely and deterministically** using Python’s `ast` module. The agent **cannot compute math internally** and must call the tool for any calculations.
+
+### Key Features
+
+- Safe arithmetic with `+ - * / // % **`  
+- Limits expression length and prevents huge outputs  
+- Wrapped as a LangChain tool with `@tool`  
+- Tool-calling agent powered by `ChatGoogleGenerativeAI (gemini-2.0-flash)`  
+- Converts `^` to `**` and returns numeric results only  
+
+### Sample Questions and Outputs
+
+| Question | LLM Only | Agent with Calculator |
+|----------|-----------|----------------------|
+| 234 * 19 | 4446 | 4446 |
+| (12345*6789)+98765 | 84075680 | 83908970 |
+| 13.7% of 12345 + 98.76^2 (round 2 decimals) | 11444.80 | 11444.80 |
+
+---
+
+## 2. Simple Search Tool
+
+### Overview
+
+This agent uses **web search (DuckDuckGo)** and **Wikipedia summaries** to answer factual or recent questions. The LLM **calls tools for any facts, numbers, dates, or latest info**, ensuring accuracy and citations.
+
+### Key Features
+
+- `web_search`: fetches up to 5 results with URLs and snippets  
+- `wiki_summary`: short Wikipedia summaries with page URL  
+- Agent enforces using tools for citations and avoids hallucinations  
+
+### Example Usage and Output
+
+**1) FIFA World Cup 2022 Winner**
+
+# Simple LangChain Tools
+
+This repository contains **two LangChain-powered tools** integrated with Google Gemini:
+
+1. **Secure Calculator Tool** – deterministic arithmetic using a safe Python engine.  
+2. **Simple Search Tool** – web search + Wikipedia summaries with live citations.  
+
+Both tools demonstrate how **tool-augmented LLM agents** can produce accurate and reliable outputs.
+
+---
+
+## 1. Simple Calculator Tool
+
+### Overview
+
+The calculator ensures that all arithmetic is evaluated **safely and deterministically** using Python’s `ast` module. The agent **cannot compute math internally** and must call the tool for any calculations.
+
+### Key Features
+
+- Safe arithmetic with `+ - * / // % **`  
+- Limits expression length and prevents huge outputs  
+- Wrapped as a LangChain tool with `@tool`  
+- Tool-calling agent powered by `ChatGoogleGenerativeAI (gemini-2.0-flash)`  
+- Converts `^` to `**` and returns numeric results only  
+
+### Sample Questions and Outputs
+
+| Question | LLM Only | Agent with Calculator |
+|----------|-----------|----------------------|
+| 234 * 19 | 4446 | 4446 |
+| (12345*6789)+98765 | 84075680 | 83908970 |
+| 13.7% of 12345 + 98.76^2 (round 2 decimals) | 11444.80 | 11444.80 |
+
+---
+
+## 2. Simple Search Tool
+
+### Overview
+
+This agent uses **web search (DuckDuckGo)** and **Wikipedia summaries** to answer factual or recent questions. The LLM **calls tools for any facts, numbers, dates, or latest info**, ensuring accuracy and citations.
+
+### Key Features
+
+- `web_search`: fetches up to 5 results with URLs and snippets  
+- `wiki_summary`: short Wikipedia summaries with page URL  
+- Agent enforces using tools for citations and avoids hallucinations  
+
+### Example Usage and Output
+
+**1) FIFA World Cup 2022 Winner**
+# Simple LangChain Tools
+
+This repository contains **two LangChain-powered tools** integrated with Google Gemini:
+
+1. **Secure Calculator Tool** – deterministic arithmetic using a safe Python engine.  
+2. **Simple Search Tool** – web search + Wikipedia summaries with live citations.  
+
+Both tools demonstrate how **tool-augmented LLM agents** can produce accurate and reliable outputs.
+
+---
+
+## 1. Simple Calculator Tool
+
+### Overview
+
+The calculator ensures that all arithmetic is evaluated **safely and deterministically** using Python’s `ast` module. The agent **cannot compute math internally** and must call the tool for any calculations.
+
+### Key Features
+
+- Safe arithmetic with `+ - * / // % **`  
+- Limits expression length and prevents huge outputs  
+- Wrapped as a LangChain tool with `@tool`  
+- Tool-calling agent powered by `ChatGoogleGenerativeAI (gemini-2.0-flash)`  
+- Converts `^` to `**` and returns numeric results only  
+
+### Sample Questions and Outputs
+
+| Question | LLM Only | Agent with Calculator |
+|----------|-----------|----------------------|
+| 234 * 19 | 4446 | 4446 |
+| (12345*6789)+98765 | 84075680 | 83908970 |
+| 13.7% of 12345 + 98.76^2 (round 2 decimals) | 11444.80 | 11444.80 |
+
+---
+
+## 2. Simple Search Tool
+
+### Overview
+
+This agent uses **web search (DuckDuckGo)** and **Wikipedia summaries** to answer factual or recent questions. The LLM **calls tools for any facts, numbers, dates, or latest info**, ensuring accuracy and citations.
+
+### Key Features
+
+- `web_search`: fetches up to 5 results with URLs and snippets  
+- `wiki_summary`: short Wikipedia summaries with page URL  
+- Agent enforces using tools for citations and avoids hallucinations  
+
+### Example Usage and Output
+
+**1) FIFA World Cup 2022 Winner**
+
+# Simple LangChain Tools
+
+This repository contains **two LangChain-powered tools** integrated with Google Gemini:
+
+1. **Secure Calculator Tool** – deterministic arithmetic using a safe Python engine.  
+2. **Simple Search Tool** – web search + Wikipedia summaries with live citations.  
+
+Both tools demonstrate how **tool-augmented LLM agents** can produce accurate and reliable outputs.
+
+---
+
+## 1. Simple Calculator Tool
+
+### Overview
+
+The calculator ensures that all arithmetic is evaluated **safely and deterministically** using Python’s `ast` module. The agent **cannot compute math internally** and must call the tool for any calculations.
+
+### Key Features
+
+- Safe arithmetic with `+ - * / // % **`  
+- Limits expression length and prevents huge outputs  
+- Wrapped as a LangChain tool with `@tool`  
+- Tool-calling agent powered by `ChatGoogleGenerativeAI (gemini-2.0-flash)`  
+- Converts `^` to `**` and returns numeric results only  
+
+### Sample Questions and Outputs
+
+| Question | LLM Only | Agent with Calculator |
+|----------|-----------|----------------------|
+| 234 * 19 | 4446 | 4446 |
+| (12345*6789)+98765 | 84075680 | 83908970 |
+| 13.7% of 12345 + 98.76^2 (round 2 decimals) | 11444.80 | 11444.80 |
+
+---
+
+## 2. Simple Search Tool
+
+### Overview
+
+This agent uses **web search (DuckDuckGo)** and **Wikipedia summaries** to answer factual or recent questions. The LLM **calls tools for any facts, numbers, dates, or latest info**, ensuring accuracy and citations.
+
+### Key Features
+# Simple LangChain Tools
+
+This repository contains **two LangChain-powered tools** integrated with Google Gemini:
+
+1. **Secure Calculator Tool** – deterministic arithmetic using a safe Python engine.  
+2. **Simple Search Tool** – web search + Wikipedia summaries with live citations.  
+
+Both tools demonstrate how **tool-augmented LLM agents** can produce accurate and reliable outputs.
+
+---
+
+## 1. Simple Calculator Tool
+
+### Overview
+
+The calculator ensures that all arithmetic is evaluated **safely and deterministically** using Python’s `ast` module. The agent **cannot compute math internally** and must call the tool for any calculations.
+
+### Key Features
+
+- Safe arithmetic with `+ - * / // % **`  
+- Limits expression length and prevents huge outputs  
+- Wrapped as a LangChain tool with `@tool`  
+- Tool-calling agent powered by `ChatGoogleGenerativeAI (gemini-2.0-flash)`  
+- Converts `^` to `**` and returns numeric results only  
+
+### Sample Questions and Outputs
+
+| Question | LLM Only | Agent with Calculator |
+|----------|-----------|----------------------|
+| 234 * 19 | 4446 | 4446 |
+| (12345*6789)+98765 | 84075680 | 83908970 |
+| 13.7% of 12345 + 98.76^2 (round 2 decimals) | 11444.80 | 11444.80 |
+
+---
+
+## 2. Simple Search Tool
+
+### Overview
+
+This agent uses **web search (DuckDuckGo)** and **Wikipedia summaries** to answer factual or recent questions. The LLM **calls tools for any facts, numbers, dates, or latest info**, ensuring accuracy and citations.
+
+### Key Features
+
+- `web_search`: fetches up to 5 results with URLs and snippets  
+- `wiki_summary`: short Wikipedia summaries with page URL  
+- Agent enforces using tools for citations and avoids hallucinations  
+
+### Example Usage and Output
+
+**1) FIFA World Cup 2022 Winner**
+
+- `web_search`: fetches up to 5 results with URLs and snippets  
+- `wiki_summary`: short Wikipedia summaries with page URL  
+- Agent enforces using tools for citations and avoids hallucinations  
+
+### Example Usage and Output
+
+**1) FIFA World Cup 2022 Winner**
+
+Argentina won the FIFA Worls Cup 2022[https://en.wikipedia.org/wiki/2022_FIFA_World_Cup_Final]
+
+**2) Retrieval-Augmented Generation (Wikipedia Summary)**
+
+- RAG combines language models with information retrieval for accurate responses.
+- Allows models to access external sources for contextually relevant answers.
+- Used for various NLP tasks to improve reliability of generated text.
+
+Source:
+Title: Retrieval-augmented generation
+URL: https://en.wikipedia.org/wiki/Retrieval-augmented_generation
+
+**3) Recent Headlines about Generative AI**
+
+- AI News | Reuters [https://www.reuters.com/technology/artificial-intelligence/]
+- Generative AI - HBR [https://hbr.org/topic/subject/generative-ai]
+- Artificial intelligence | MIT News [https://news.mit.edu/topic/artificial-intelligence2]
 
 
-**Agent with Calculator Tool**  
+---
 
-Q1: 4446
-Q2: 83908970
-Q3: 11444.80
+## Summary
 
+This repository showcases **tool-augmented LLM agents**:
 
-The results show that using a **dedicated calculator tool** ensures higher accuracy for complex arithmetic operations compared to relying solely on the LLM.
+- Calculator: accurate, safe arithmetic  
+- Search: factual, cited responses from live sources  
+
+These tools highlight how **LangChain + Gemini** can enforce reliability, avoid hallucinations, and produce professional outputs.
